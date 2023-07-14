@@ -33,11 +33,11 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 let userWord = '';
+
 function initialPrompt() {
-   console.log("Let's play some scrabble!\n") 
-      userWord = input.question('Enter a word to score:');{
-   console.log(`${oldScrabbleScorer(userWord)}`);
-   }
+      userWord = input.question(`Let's play some Scrabble!
+      Enter a word to score:`);
+   return userWord
 };
 
 //simpleScorer : Define a function that takes a word as a parameter and returns a numerical score. Each
@@ -57,8 +57,12 @@ function vowelBonusScorer(word) {
    word = word.toUpperCase();
    vowelBonusArray = word.split('');
    letterPoints = 0
-   for (let i = 0; i < vowelBonusArray.lebnth; i++){
-      if (vowelBonusArray[i] === 'A' || 'E' || 'I' || 'O' || 'U'){
+   for (let i = 0; i < vowelBonusArray.length; i++){
+      if (vowelBonusArray[i] === 'A' 
+      || vowelBonusArray[i] === 'E' 
+      || vowelBonusArray[i] === 'I' 
+      || vowelBonusArray[i] === 'O' 
+      || vowelBonusArray[i] === 'U'){
          letterPoints +=3
       } else {
          letterPoints +=1
@@ -68,12 +72,7 @@ function vowelBonusScorer(word) {
 };
 
 function scrabbleScorer(word) {
-   word = word.toLowerCase()
-   letterPoints = 0
-   for (let i = 0; i < word.length; i++){
-      letterPoints +=oldPointStructure[word[i]]
-   }
-   return letterPoints
+   
 };
 
 
@@ -92,14 +91,14 @@ let simpleScorerObject = {
 
 let vowelScorerObject = {
    name: "Bonus Vowel Score",
-   description: "Vowels are 3 points, consonants are 1 point.",
+   description: "Vowels are 3 points, Consonants are 1 point.",
    scoringFunction: vowelBonusScorer
 };
 
 let scrabbleScorerObject = {
    name: "Scrabble",
-   description: "Letters are worth 1 point.",
-   scoringFunction: scrabbleScorer
+   description: "The Traditional Scoring method.",
+   scoringFunction: oldScrabbleScorer
 };
 
 const scoringAlgorithms = [simpleScorerObject, vowelScorerObject, scrabbleScorerObject];
@@ -118,7 +117,7 @@ const scoringAlgorithms = [simpleScorerObject, vowelScorerObject, scrabbleScorer
 function scorerPrompt() {
    console.log("Which Scoring method would you like to use?\n");
    for (let i = 0; i <scoringAlgorithms.length; i++){
-      console.log(`${scoringAlgorithms[i].name}: ${scoringAlgorithms[i].description}`)
+      console.log(`${[i]}-${scoringAlgorithms[i].name}: ${scoringAlgorithms[i].description}`)
    }
    scorerPromptResponse = input.question("Enter 0, 1, or 2:");
    scorerPromptResponse = Number(scorerPromptResponse)
