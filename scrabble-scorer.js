@@ -46,8 +46,8 @@ function initialPrompt() {
 function simpleScorer(word) {
    word = word.toUpperCase();
    simpleScoreArray = word.split('');
-   letterPoints = simpleScoreArray.length
-   return letterPoints
+   letterPoints = simpleScoreArray.length;
+   return letterPoints;
 };
 
 //vowelBonusScorer : Define a function that takes a word as a parameter and returns a score. Each vowel
@@ -77,7 +77,7 @@ function scrabbleScorer(word) {
    for (let i = 0; i < word.length; i++) {
       letterPoints += newPointStructure[word[i]]
    }
-   return letterPoints
+   return letterPoints;
 };
 
 
@@ -91,19 +91,19 @@ function scrabbleScorer(word) {
 let simpleScorerObject = {
    name: "Simple Score",
    description: "Letters are worth 1 point.",
-   scoringFunction: simpleScorer
+   scorerFunction: simpleScorer,
 };
 
 let vowelScorerObject = {
    name: "Bonus Vowel Score",
    description: "Vowels are 3 points, Consonants are 1 point.",
-   scoringFunction: vowelBonusScorer
+   scorerFunction: vowelBonusScorer
 };
 
 let scrabbleScorerObject = {
    name: "Scrabble",
    description: "The Traditional Scoring method.",
-   scoringFunction: scrabbleScorer
+   scorerFunction: scrabbleScorer
 };
 
 const scoringAlgorithms = [simpleScorerObject, vowelScorerObject, scrabbleScorerObject,];
@@ -127,7 +127,7 @@ function scorerPrompt() {
    scorerPromptResponse = input.question("Enter 0, 1, or 2:");
    scorerPromptResponse = Number(scorerPromptResponse)
    console.log(`The Score for "${userWord}":
-   ${scoringAlgorithms[scorerPromptResponse].scoringFunction(userWord)}`)
+   ${scoringAlgorithms[scorerPromptResponse].scorerFunction(userWord)}`)
 };
 
 
