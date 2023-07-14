@@ -71,9 +71,9 @@ function scrabbleScorer(word) {
    word = word.toLowerCase()
    letterPoints = 0
    for (let i = 0; i < word.length; i++){
-      
+      letterPoints +=oldPointStructure[word[i]]
    }
-
+   return letterPoints
 };
 
 
@@ -84,11 +84,47 @@ function scrabbleScorer(word) {
 //the three scoring options. Each object should contain three keys:  name ,  description , and 
 //scoringFunction .
 
-const scoringAlgorithms = [];
+let simpleScorerObject = {
+   name: "Simple Score",
+   description: "Letters are worth 1 point.",
+   scoringFunction: simpleScorer
+};
+
+let vowelScorerObject = {
+   name: "Bonus Vowel Score",
+   description: "Vowels are 3 points, consonants are 1 point.",
+   scoringFunction: vowelBonusScorer
+};
+
+let scrabbleScorerObject = {
+   name: "Scrabble",
+   description: "Letters are worth 1 point.",
+   scoringFunction: scrabbleScorer
+};
+
+const scoringAlgorithms = [simpleScorerObject, vowelScorerObject, scrabbleScorerObject];
 
 
+//3. Finish writing  scorerPrompt()  so that the user can select which scoring algorithm to use when the
+//program scores their word. Use the selected algorithm to determine the score for the word:
+//1. If the user enters  0 , have the program output a score using the simple scorer.
+//2. If the user enters  1 , use the vowel bonus scoring function.
+//3. If the user enters  2 , use the Scrabble scoring option.
 
-function scorerPrompt() {}
+//4. Call  scorerPrompt()  inside of  runProgram()  so that the program asks the user for a scoring algorithm
+//after prompting for a word. Use the scoring object returned from  scorerPrompt()  to score the user’s
+//word and let the user know what score their word receives.
+
+function scorerPrompt() {
+   console.log("Which Scoring method would you like to use?\n");
+   for (let i = 0; i <scoringAlgorithms.length; i++){
+      console.log(`${scoringAlgorithms[i].name}: ${scoringAlgorithms[i].description}`)
+   }
+   scorerPromptResponse = input.question("Enter 0, 1, or 2:");
+   scorerPromptResponse = Number(scorerPromptResponse)
+   console.log(`The Score for "${userWord}":
+   ${scoringAlgorithms[scorerPromptResponse].scoringFunction(userWord)}`)
+};
 
 function transform() {};
 
@@ -97,7 +133,7 @@ let newPointStructure;
 
 function runProgram() {
    initialPrompt();
-   
+   scorerPrompt();
 }
 
 // Don't write any code below this line //
