@@ -106,7 +106,7 @@ let scrabbleScorerObject = {
    scoringFunction: scrabbleScorer
 };
 
-const scoringAlgorithms = [simpleScorerObject, vowelScorerObject, scrabbleScorerObject];
+const scoringAlgorithms = [simpleScorerObject, vowelScorerObject, scrabbleScorerObject,];
 
 
 //3. Finish writing  scorerPrompt()  so that the user can select which scoring algorithm to use when the
@@ -130,9 +130,6 @@ function scorerPrompt() {
    ${scoringAlgorithms[scorerPromptResponse].scoringFunction(userWord)}`)
 };
 
-//1. Write the rest of the  transform()  function. It will need to take an object as a parameter - specifically
-//the  oldPointStructure  object. Calling  transform(oldPointStructure)  will return an object with
-//lowercase letters as keys. The value for each key will be the points assigned to that letter.
 
 function transform(pointStructure) {
    let newPointSystem = {};
