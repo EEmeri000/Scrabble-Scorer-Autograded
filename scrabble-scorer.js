@@ -72,7 +72,12 @@ function vowelBonusScorer(word) {
 };
 
 function scrabbleScorer(word) {
-   
+   word = word.toLowerCase()
+   letterPoints = 0
+   for (let i = 0; i < word.length; i++) {
+      letterPoints += newPointStructure[word[i]]
+   }
+   return letterPoints
 };
 
 
@@ -125,9 +130,24 @@ function scorerPrompt() {
    ${scoringAlgorithms[scorerPromptResponse].scoringFunction(userWord)}`)
 };
 
-function transform() {};
+//1. Write the rest of the  transform()  function. It will need to take an object as a parameter - specifically
+//the  oldPointStructure  object. Calling  transform(oldPointStructure)  will return an object with
+//lowercase letters as keys. The value for each key will be the points assigned to that letter.
 
-let newPointStructure;
+function transform(pointStructure) {
+   let newPointSystem = {};
+   for (key in pointStructure) {
+      for(let i = 0; i < pointStructure[key].length; i++){
+         let letterItself = pointStructure[key][i];
+         letterItself = letterItself.toLowerCase();
+         newPointSystem[`${letterItself}`] = Number(key);
+      };
+   };
+   return newPointSystem;
+};
+
+let newPointStructure = transform(oldPointStructure);
+newPointStructure[""] = 0;
 
 
 function runProgram() {
