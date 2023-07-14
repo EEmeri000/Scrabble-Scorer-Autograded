@@ -147,7 +147,7 @@ function transform(pointStructure) {
 };
 
 let newPointStructure = transform(oldPointStructure);
-newPointStructure[""] = 0;
+
 
 
 function runProgram() {
