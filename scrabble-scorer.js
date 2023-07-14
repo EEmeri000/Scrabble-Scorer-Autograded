@@ -103,7 +103,7 @@ let vowelScorerObject = {
 let scrabbleScorerObject = {
    name: "Scrabble",
    description: "The Traditional Scoring method.",
-   scoringFunction: oldScrabbleScorer
+   scoringFunction: scrabbleScorer
 };
 
 const scoringAlgorithms = [simpleScorerObject, vowelScorerObject, scrabbleScorerObject];
@@ -147,7 +147,7 @@ function transform(pointStructure) {
 };
 
 let newPointStructure = transform(oldPointStructure);
-
+newPointStructure [" "] = 0
 
 
 function runProgram() {
